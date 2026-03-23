@@ -1,6 +1,14 @@
+// ============================================================
+// CONFIGURAÇÃO SUPABASE - LR Doces Gourmet
+// ============================================================
+// 1. Acesse https://supabase.com e faça login
+// 2. Crie um novo projeto chamado "lr-doces"
+// 3. Vá em Project Settings > API
+// 4. Copie a "Project URL" e a "anon public key"
+// 5. Cole abaixo substituindo os valores
 
-const SUPABASE_URL = 'https://cqulylfnlavpgpmyzjev.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxdWx5bGZubGF2cGdwbXl6amV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNjc5OTUsImV4cCI6MjA4OTg0Mzk5NX0.mqUDphkH3oOXkvfVbEVZadaXPUDj5sBQLY7y25DYMlU';
+const SUPABASE_URL = 'https://SEU_PROJECT_ID.supabase.co';
+const SUPABASE_KEY = 'SUA_ANON_KEY_AQUI';
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_KEY);
