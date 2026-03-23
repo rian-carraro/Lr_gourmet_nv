@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio - LR Doces Gourmet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg lr-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">
+      <img src="../assets/logo.png" alt="LR" onerror="this.style.display='none'">
+      LR Doces Gourmet
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="../index.html"><i class="bi bi-house me-1"></i>Início</a></li>
+        <li class="nav-item"><a class="nav-link active" href="cardapio.html"><i class="bi bi-grid me-1"></i>Cardápio</a></li>
+        <li class="nav-item"><a class="nav-link" href="sobre.html"><i class="bi bi-heart me-1"></i>Sobre</a></li>
+        <li class="nav-item ms-2"><div id="status-badge-nav"></div></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:50px 0 30px;color:white;">
+  <div class="container">
+    <h1 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;">Nosso Cardápio</h1>
+    <p style="opacity:0.85;font-size:1rem;" class="mb-0">Escolha seus doces favoritos e faça seu pedido 🍬</p>
+  </div>
+</div>
+
+<!-- BUSCA E FILTROS -->
+<div class="bg-white border-bottom sticky-top" style="top:70px;z-index:100;">
+  <div class="container py-3">
+    <div class="row align-items-center g-3">
+      <div class="col-md-5">
+        <div style="position:relative;">
+          <i class="bi bi-search" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);"></i>
+          <input type="search" id="busca-produto" class="form-control ps-5" placeholder="Buscar produto..." style="border-radius:50px;border-color:var(--border);">
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="category-filter" id="filtros-categorias">
+          <button class="filter-btn active" data-cat="all">Todos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRID PRODUTOS -->
+<div class="container py-5">
+  <div id="produtos-count" class="text-muted mb-3" style="font-size:0.9rem;"></div>
+  <div id="grid-produtos" class="row g-4"></div>
+  <div id="sem-resultados" class="text-center py-5 d-none">
+    <div style="font-size:4rem;">🔍</div>
+    <h5 class="mt-3 text-muted">Nenhum produto encontrado</h5>
+    <p class="text-muted">Tente buscar por outro termo ou categoria</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="lr-footer">
+  <div class="container">
+    <div class="footer-bottom text-center">
+      <p>© 2025 LR Doces Gourmet. Feito com 💙 e muito açúcar.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL CLIENTE -->
+<div class="modal fade modal-lr" id="modalCliente" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-person-heart me-2"></i>Antes do seu pedido...</h5>
+      </div>
+      <div class="modal-body p-4">
+        <p class="text-muted mb-4" style="font-size:0.9rem;">Salve seus dados para facilitar futuros pedidos 🍬</p>
+        <div class="row g-3">
+          <div class="col-12"><label class="form-label fw-semibold">Nome completo *</label><input type="text" class="form-control" id="c-nome" placeholder="Seu nome"></div>
+          <div class="col-12"><label class="form-label fw-semibold">WhatsApp *</label><input type="tel" class="form-control" id="c-telefone" placeholder="(00) 00000-0000"></div>
+          <div class="col-8"><label class="form-label fw-semibold">Rua</label><input type="text" class="form-control" id="c-rua" placeholder="Nome da rua"></div>
+          <div class="col-4"><label class="form-label fw-semibold">Número</label><input type="text" class="form-control" id="c-numero" placeholder="123"></div>
+          <div class="col-12"><label class="form-label fw-semibold">Bairro</label><input type="text" class="form-control" id="c-bairro" placeholder="Seu bairro"></div>
+          <div class="col-12"><label class="form-label fw-semibold">Referência</label><input type="text" class="form-control" id="c-referencia" placeholder="Ex: próximo à padaria X"></div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 px-4 pb-4">
+        <button class="btn-lr w-100 py-2" onclick="salvarCliente()"><i class="bi bi-check-circle me-2"></i>Salvar e continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js" type="module"></script>
+<script type="module">
+import db from '../js/supabase.js';
+window.db = db;
+
+let todosOsProdutos = [];
+let categoriaAtual = 'all';
+let buscaAtual = '';
+let lojaInfo = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await renderStatusBadge('status-badge-nav');
+  await carregarCategorias();
+  await carregarProdutos();
+  await carregarLojaInfo();
+
+  document.getElementById('busca-produto').addEventListener('input', debounce(e => {
+    buscaAtual = e.target.value.toLowerCase();
+    filtrarEExibir();
+  }, 300));
+});
+
+async function carregarLojaInfo() {
+  const { data } = await db.from('loja_info').select('telefone').single();
+  lojaInfo = data;
+}
+
+async function carregarCategorias() {
+  const { data } = await db.from('categorias').select('*').eq('ativo', true).order('ordem');
+  const container = document.getElementById('filtros-categorias');
+  if (!data) return;
+  data.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.cat = cat.id;
+    btn.textContent = cat.nome;
+    btn.onclick = () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      categoriaAtual = cat.id;
+      filtrarEExibir();
+    };
+    container.appendChild(btn);
+  });
+
+  document.querySelector('[data-cat="all"]').onclick = () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-cat="all"]').classList.add('active');
+    categoriaAtual = 'all';
+    filtrarEExibir();
+  };
+}
+
+async function carregarProdutos() {
+  const grid = document.getElementById('grid-produtos');
+  grid.innerHTML = `<div class="col-12 lr-loading"><div class="lr-spinner"></div><span>Carregando cardápio...</span></div>`;
+  const { data } = await db.from('produtos').select('*, categorias(nome)').eq('ativo', true).order('nome');
+  todosOsProdutos = data || [];
+  filtrarEExibir();
+}
+
+function filtrarEExibir() {
+  let lista = todosOsProdutos;
+  if (categoriaAtual !== 'all') lista = lista.filter(p => p.categoria_id === categoriaAtual);
+  if (buscaAtual) lista = lista.filter(p => p.nome.toLowerCase().includes(buscaAtual) || (p.descricao||'').toLowerCase().includes(buscaAtual));
+
+  const grid = document.getElementById('grid-produtos');
+  const semRes = document.getElementById('sem-resultados');
+  const count = document.getElementById('produtos-count');
+
+  if (lista.length === 0) {
+    grid.innerHTML = '';
+    semRes.classList.remove('d-none');
+    count.textContent = '';
+    return;
+  }
+
+  semRes.classList.add('d-none');
+  count.textContent = `${lista.length} produto${lista.length !== 1 ? 's' : ''} encontrado${lista.length !== 1 ? 's' : ''}`;
+  grid.innerHTML = lista.map(p => `
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+      <div class="product-card">
+        <div class="card-img-wrapper">
+          ${p.imagem_url ? `<img src="${p.imagem_url}" alt="${p.nome}">` : `<div class="card-img-placeholder">🍬</div>`}
+          ${p.destaque ? '<span class="badge-destaque">⭐ Destaque</span>' : ''}
+          ${p.categorias ? `<span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:white;font-size:0.72rem;padding:2px 8px;border-radius:50px;">${p.categorias.nome}</span>` : ''}
+        </div>
+        <div class="card-body d-flex flex-column">
+          <h6 class="card-title">${p.nome}</h6>
+          <p class="card-text flex-grow-1">${p.descricao || ''}</p>
+          <div class="d-flex align-items-center justify-content-between mt-3">
+            <span class="price">${formatMoney(p.preco)}</span>
+            <button class="btn-lr btn-sm" onclick="pedirProduto('${p.id}','${p.nome}',${p.preco})">
+              <i class="bi bi-whatsapp me-1"></i>Pedir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+window.pedirProduto = function(id, nome, preco) {
+  const cliente = JSON.parse(localStorage.getItem('lr_cliente') || 'null');
+  const montarPedido = (cl) => {
+    const tel = lojaInfo?.telefone?.replace(/\D/g,'') || '';
+    const msg = `Olá! Sou ${cl.nome} e gostaria de pedir:\n\n🍬 *${nome}* - ${formatMoney(preco)}\n\nEndereço: ${cl.rua||''}, ${cl.numero||''} - ${cl.bairro||''}\n${cl.referencia ? 'Ref: '+cl.referencia : ''}`;
+    window.open(`https://wa.me/55${tel}?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  if (!cliente) {
+    window._pedidoPendente = { id, nome, preco };
+    new bootstrap.Modal(document.getElementById('modalCliente')).show();
+  } else {
+    montarPedido(cliente);
+  }
+};
+
+window.salvarCliente = async function() {
+  const nome = document.getElementById('c-nome').value.trim();
+  const telefone = document.getElementById('c-telefone').value.trim();
+  if (!nome || !telefone) { showToast('Nome e WhatsApp são obrigatórios', 'error'); return; }
+  const clienteData = { nome, telefone, rua: document.getElementById('c-rua').value.trim(), numero: document.getElementById('c-numero').value.trim(), bairro: document.getElementById('c-bairro').value.trim(), referencia: document.getElementById('c-referencia').value.trim() };
+  const { data, error } = await db.from('clientes').insert([clienteData]).select().single();
+  if (error) { showToast('Erro ao salvar', 'error'); return; }
+  localStorage.setItem('lr_cliente', JSON.stringify(data));
+  bootstrap.Modal.getInstance(document.getElementById('modalCliente')).hide();
+  showToast(`Bem-vinda, ${nome}! 🍬`, 'success');
+  if (window._pedidoPendente) { pedirProduto(window._pedidoPendente.id, window._pedidoPendente.nome, window._pedidoPendente.preco); window._pedidoPendente = null; }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LR Doces Gourmet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg lr-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/logo.png" alt="LR Doces Gourmet" onerror="this.style.display='none'">
+      LR Doces Gourmet
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house me-1"></i>Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/cardapio.html"><i class="bi bi-grid me-1"></i>Cardápio</a></li>
+        <li class="nav-item"><a class="nav-link" href="pages/sobre.html"><i class="bi bi-heart me-1"></i>Sobre</a></li>
+        <li class="nav-item ms-2">
+          <div id="status-badge-nav"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="lr-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="mb-3">
+          <span style="background:rgba(255,255,255,0.2);color:white;padding:5px 16px;border-radius:50px;font-size:0.85rem;font-weight:700;letter-spacing:1px;">
+            🍬 DOCES ARTESANAIS GOURMET
+          </span>
+        </div>
+        <h1 class="mb-3">Feitos com amor, para adoçar sua vida</h1>
+        <p class="mb-4">Doces artesanais cuidadosamente preparados com ingredientes selecionados para cada ocasião especial.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="pages/cardapio.html" class="btn btn-light fw-700 rounded-pill px-4 py-2" style="color:var(--primary);font-weight:700;">
+            <i class="bi bi-grid me-2"></i>Ver Cardápio
+          </a>
+          <a href="pages/sobre.html" class="btn btn-outline-light rounded-pill px-4 py-2 fw-700" style="font-weight:700;">
+            <i class="bi bi-heart me-2"></i>Nossa História
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center d-none d-lg-block">
+        <div style="font-size:8rem;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.2))">🍰</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS E HORÁRIOS RÁPIDOS -->
+<div class="bg-white border-bottom">
+  <div class="container py-3">
+    <div class="d-flex align-items-center gap-4 flex-wrap">
+      <div id="status-badge-main"></div>
+      <div id="horario-hoje" class="text-muted" style="font-size:0.9rem;"></div>
+      <div class="ms-auto d-flex gap-3" style="font-size:0.9rem;">
+        <span><i class="bi bi-whatsapp text-success me-1"></i><a href="#" id="link-whatsapp" class="text-decoration-none text-muted">WhatsApp</a></span>
+        <span><i class="bi bi-instagram" style="color:#E1306C" ></i><a href="#" id="link-insta" class="text-decoration-none text-muted ms-1">Instagram</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO MAIS VENDIDOS -->
+<section class="py-5">
+  <div class="container">
+    <div class="mb-4">
+      <span class="section-title">⭐ Mais Vendidos</span>
+      <p class="section-subtitle">Os queridinhos da nossa clientela</p>
+    </div>
+    <div id="grid-mais-vendidos" class="row g-4">
+      <div class="lr-loading"><div class="lr-spinner"></div><span>Carregando...</span></div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="pages/cardapio.html" class="btn-lr-outline">Ver todos <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO NOVIDADES -->
+<section class="py-5" style="background:var(--primary-ultra-light);">
+  <div class="container">
+    <div class="mb-4">
+      <span class="section-title">✨ Novidades</span>
+      <p class="section-subtitle">Saindo do forno, chegando na sua mesa</p>
+    </div>
+    <div id="grid-novidades" class="row g-4">
+      <div class="lr-loading"><div class="lr-spinner"></div><span>Carregando...</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO PROMOÇÕES -->
+<section class="py-5">
+  <div class="container">
+    <div class="mb-4">
+      <span class="section-title">🏷️ Promoções</span>
+      <p class="section-subtitle">Aproveite enquanto dura!</p>
+    </div>
+    <div id="grid-promocoes" class="row g-4">
+      <div class="lr-loading"><div class="lr-spinner"></div><span>Carregando...</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="py-5" style="background:var(--dark);">
+  <div class="container text-center">
+    <h2 style="color:white;font-family:'Playfair Display',serif;font-size:2.2rem;" class="mb-3">
+      Encomendas para festas e eventos
+    </h2>
+    <p style="color:rgba(255,255,255,0.7);" class="mb-4">Brigadeiros gourmet, bolos personalizados e muito mais. Entre em contato!</p>
+    <a href="#" id="cta-whatsapp" class="btn btn-success rounded-pill px-5 py-2 fw-bold fs-5">
+      <i class="bi bi-whatsapp me-2"></i>Fazer Encomenda
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="lr-footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5>LR Doces Gourmet</h5>
+        <p style="font-size:0.9rem;opacity:0.7;" id="footer-desc">Doces artesanais feitos com amor.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Navegação</h5>
+        <ul class="list-unstyled" style="display:flex;flex-direction:column;gap:6px;">
+          <li><a href="index.html"><i class="bi bi-chevron-right me-1"></i>Início</a></li>
+          <li><a href="pages/cardapio.html"><i class="bi bi-chevron-right me-1"></i>Cardápio</a></li>
+          <li><a href="pages/sobre.html"><i class="bi bi-chevron-right me-1"></i>Sobre</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Contato</h5>
+        <ul class="list-unstyled" style="display:flex;flex-direction:column;gap:6px;">
+          <li id="footer-tel"><i class="bi bi-whatsapp me-2 text-success"></i>-</li>
+          <li id="footer-insta"><i class="bi bi-instagram me-2" style="color:#E1306C"></i>-</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>© 2025 LR Doces Gourmet. Feito com 💙 e muito açúcar.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL CLIENTE (primeiro pedido) -->
+<div class="modal fade modal-lr" id="modalCliente" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-person-heart me-2"></i>Bem-vindo! Nos conte um pouco sobre você</h5>
+      </div>
+      <div class="modal-body p-4">
+        <p class="text-muted mb-4" style="font-size:0.9rem;">Para facilitar seus próximos pedidos, precisamos de algumas informações 🍬</p>
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-semibold">Nome completo *</label>
+            <input type="text" class="form-control" id="c-nome" placeholder="Seu nome">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">WhatsApp *</label>
+            <input type="tel" class="form-control" id="c-telefone" placeholder="(00) 00000-0000">
+          </div>
+          <div class="col-8">
+            <label class="form-label fw-semibold">Rua</label>
+            <input type="text" class="form-control" id="c-rua" placeholder="Nome da rua">
+          </div>
+          <div class="col-4">
+            <label class="form-label fw-semibold">Número</label>
+            <input type="text" class="form-control" id="c-numero" placeholder="123">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">Bairro</label>
+            <input type="text" class="form-control" id="c-bairro" placeholder="Seu bairro">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">Referência</label>
+            <input type="text" class="form-control" id="c-referencia" placeholder="Ex: próximo à padaria X">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 px-4 pb-4">
+        <button class="btn-lr w-100 py-2" onclick="salvarCliente()">
+          <i class="bi bi-check-circle me-2"></i>Salvar e continuar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js" type="module"></script>
+<script type="module">
+import db from './js/supabase.js';
+window.db = db;
+
+// Aguarda db estar disponível
+document.addEventListener('DOMContentLoaded', async () => {
+  await carregarLojaInfo();
+  await renderStatusBadge('status-badge-nav');
+  await renderStatusBadge('status-badge-main');
+  await carregarHorarioHoje();
+  await carregarSecao('mais_vendidos', 'grid-mais-vendidos');
+  await carregarSecao('novidades', 'grid-novidades');
+  await carregarSecao('promocoes', 'grid-promocoes');
+  verificarPrimeiroAcesso();
+});
+
+async function carregarLojaInfo() {
+  try {
+    const { data } = await db.from('loja_info').select('*').single();
+    if (!data) return;
+    document.getElementById('footer-desc').textContent = data.descricao || '';
+    if (data.telefone) {
+      document.getElementById('footer-tel').innerHTML = `<i class="bi bi-whatsapp me-2 text-success"></i>${data.telefone}`;
+      const wa = `https://wa.me/55${data.telefone.replace(/\D/g,'')}`;
+      document.getElementById('link-whatsapp').href = wa;
+      document.getElementById('cta-whatsapp').href = wa;
+    }
+    if (data.instagram) {
+      document.getElementById('footer-insta').innerHTML = `<i class="bi bi-instagram me-2" style="color:#E1306C"></i>${data.instagram}`;
+      document.getElementById('link-insta').href = `https://instagram.com/${data.instagram.replace('@','')}`;
+    }
+  } catch(e) {}
+}
+
+async function carregarHorarioHoje() {
+  const diaSemana = new Date().getDay();
+  const { data } = await db.from('horarios').select('*').eq('dia_semana', diaSemana).single();
+  const el = document.getElementById('horario-hoje');
+  if (!data) return;
+  if (data.aberto) {
+    el.innerHTML = `<i class="bi bi-clock me-1"></i>Hoje: ${data.hora_abertura.slice(0,5)} às ${data.hora_fechamento.slice(0,5)}`;
+  } else {
+    el.innerHTML = `<i class="bi bi-clock me-1"></i>Fechado hoje`;
+  }
+}
+
+async function carregarSecao(homeCategoria, gridId) {
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = `<div class="lr-loading"><div class="lr-spinner"></div><span>Carregando...</span></div>`;
+  const { data } = await db.from('produtos')
+    .select('*').eq('home_categoria', homeCategoria).eq('ativo', true)
+    .order('home_ordem').limit(4);
+
+  if (!data || data.length === 0) {
+    grid.innerHTML = `<div class="col-12 text-center text-muted py-4">
+      <i class="bi bi-basket2" style="font-size:2.5rem;opacity:0.3;"></i>
+      <p class="mt-2">Nenhum produto nesta seção ainda.</p>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = data.map(p => renderProductCard(p)).join('');
+}
+
+function renderProductCard(p) {
+  const img = p.imagem_url
+    ? `<img src="${p.imagem_url}" alt="${p.nome}">`
+    : `<div class="card-img-placeholder">🍬</div>`;
+  return `
+    <div class="col-sm-6 col-lg-3">
+      <div class="product-card">
+        <div class="card-img-wrapper">
+          ${img}
+          ${p.destaque ? '<span class="badge-destaque">⭐ Destaque</span>' : ''}
+        </div>
+        <div class="card-body d-flex flex-column">
+          <h6 class="card-title">${p.nome}</h6>
+          <p class="card-text flex-grow-1">${p.descricao || ''}</p>
+          <div class="d-flex align-items-center justify-content-between mt-3">
+            <span class="price">${formatMoney(p.preco)}</span>
+            <button class="btn-lr" onclick="pedirProduto('${p.id}','${p.nome}',${p.preco})">
+              <i class="bi bi-bag-plus me-1"></i>Pedir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+window.pedirProduto = function(id, nome, preco) {
+  const cliente = localStorage.getItem('lr_cliente');
+  if (!cliente) {
+    window._pedidoPendente = { id, nome, preco };
+    new bootstrap.Modal(document.getElementById('modalCliente')).show();
+    return;
+  }
+  const wa = document.getElementById('link-whatsapp').href;
+  const msg = `Olá! Gostaria de pedir: *${nome}* - ${formatMoney(preco)}`;
+  window.open(`${wa}?text=${encodeURIComponent(msg)}`, '_blank');
+};
+
+function verificarPrimeiroAcesso() {
+  if (!localStorage.getItem('lr_cliente')) {
+    setTimeout(() => {
+      new bootstrap.Modal(document.getElementById('modalCliente')).show();
+    }, 3000);
+  }
+}
+
+window.salvarCliente = async function() {
+  const nome = document.getElementById('c-nome').value.trim();
+  const telefone = document.getElementById('c-telefone').value.trim();
+  if (!nome || !telefone) { showToast('Nome e WhatsApp são obrigatórios', 'error'); return; }
+
+  const clienteData = {
+    nome,
+    telefone,
+    rua: document.getElementById('c-rua').value.trim(),
+    numero: document.getElementById('c-numero').value.trim(),
+    bairro: document.getElementById('c-bairro').value.trim(),
+    referencia: document.getElementById('c-referencia').value.trim()
+  };
+
+  const { data, error } = await db.from('clientes').insert([clienteData]).select().single();
+  if (error) { showToast('Erro ao salvar. Tente novamente.', 'error'); return; }
+
+  localStorage.setItem('lr_cliente', JSON.stringify(data));
+  bootstrap.Modal.getInstance(document.getElementById('modalCliente')).hide();
+  showToast(`Bem-vinda, ${nome}! 🍬`, 'success');
+};
+</script>
+</body>
+</html>
